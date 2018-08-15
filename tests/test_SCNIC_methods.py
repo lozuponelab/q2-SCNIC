@@ -1,9 +1,8 @@
 import pytest
-
-from biom import load_table
-import os
-import pandas as pd
 from numpy.testing import assert_allclose
+from os import path
+import pandas as pd
+from biom import load_table
 
 from q2_SCNIC._SCNIC_methods import sparcc_filter, calculate_correlations, build_correlation_network_r, \
                                     build_correlation_network_p, make_modules_on_correlation_table
@@ -11,22 +10,17 @@ from q2_SCNIC._SCNIC_methods import sparcc_filter, calculate_correlations, build
 
 @pytest.fixture()
 def data_path():
-    return os.path.join(os.path.realpath(os.path.dirname(__file__)), 'data')
+    return path.join(path.realpath(path.dirname(__file__)), 'data')
 
 
 @pytest.fixture()
 def table(data_path):
-    return load_table(os.path.join(data_path, 'fake_data.biom'))
-
-
-def test_sparcc_filter(table):
-    table_filt = sparcc_filter(table)
-    assert table_filt.shape == table.shape
+    return load_table(path.join(data_path, 'fake_data.biom'))
 
 
 @pytest.fixture()
 def correls_spar(data_path):
-    correls = pd.read_table(os.path.join(data_path, 'fake_correls_spar.txt'), index_col=(0, 1), sep='\t',
+    correls = pd.read_table(path.join(data_path, 'fake_correls_spar.txt'), index_col=(0, 1), sep='\t',
                             dtype={'feature1': str, 'feature2': str})
     new_index = pd.MultiIndex.from_tuples([(str(i), str(j)) for i, j in correls.index])
     correls.index = new_index
@@ -35,11 +29,16 @@ def correls_spar(data_path):
 
 @pytest.fixture()
 def correls_pear(data_path):
-    correls = pd.read_table(os.path.join(data_path, 'fake_correls_pear.txt'), index_col=(0, 1), sep='\t',
+    correls = pd.read_table(path.join(data_path, 'fake_correls_pear.txt'), index_col=(0, 1), sep='\t',
                             dtype={'feature1': str, 'feature2': str})
     new_index = pd.MultiIndex.from_tuples([(str(i), str(j)) for i, j in correls.index])
     correls.index = new_index
     return correls
+
+
+def test_sparcc_filter(table):
+    table_filt = sparcc_filter(table)
+    assert table_filt.shape == table.shape
 
 
 def test_calculate_correlations(table, correls_spar, correls_pear):
