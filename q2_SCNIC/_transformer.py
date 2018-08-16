@@ -17,7 +17,10 @@ def _1(data: pd.DataFrame) -> PairwiseFeatureDataFormat:
 
 @plugin.register_transformer
 def _2(ff: PairwiseFeatureDataFormat) -> pd.DataFrame:
-    return pd.read_table(str(ff), index_col=(0, 1), sep='\t')
+    df =  pd.read_table(str(ff), index_col=(0, 1), sep='\t')
+    new_index = pd.MultiIndex.from_tuples([(str(i), str(j)) for i, j in df.index])
+    df.index = new_index
+    return df
 
 
 @plugin.register_transformer
@@ -29,5 +32,4 @@ def _3(data: nx.Graph) -> GraphModelingLanguageFormat:
 
 @plugin.register_transformer
 def _4(ff: GraphModelingLanguageFormat) -> nx.Graph:
-    with ff.open() as fh:
-        return nx.read_gml(fh)
+    return nx.read_gml(str(ff))

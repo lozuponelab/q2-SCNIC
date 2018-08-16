@@ -8,6 +8,7 @@ from  q2_SCNIC._format import PairwiseFeatureDataFormat, GraphModelingLanguageFo
 def data_path():
     return path.join(path.realpath(path.dirname(__file__)), 'data')
 
+
 @pytest.fixture()
 def correls_file_path(data_path):
     return path.join(data_path, 'fake_correls_spar.txt')

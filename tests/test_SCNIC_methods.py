@@ -46,7 +46,7 @@ def test_calculate_correlations(table, correls_spar, correls_pear):
     test_correls_pear = calculate_correlations(table, method='pearson')
     assert_allclose(test_correls_pear.values, correls_pear.values, atol=.05)
     test_correls_spar = calculate_correlations(table, method='sparcc')
-    assert_allclose(test_correls_spar.values, correls_spar.values, atol=.05)
+    assert_allclose(test_correls_spar.values, correls_spar.values, atol=.1)
 
 
 def test_build_correlation_network_r(correls_spar):
