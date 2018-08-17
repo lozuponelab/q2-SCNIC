@@ -19,10 +19,10 @@ conda install q2-SCNIC
 ```
 That's it.
 
-Note: This adds two additional packages, as well as their dependencies, into your qiime 2 environment. Let us know if this affects your usage of qiime 2 by raising an issue[here](https://github.com/shafferm/q2-SCNIC)or by posting on the[qiime 2 forum.](https://forum.qiime2.org) You also can[install a new qiime 2 environment](https://docs.qiime2.org/latest/install/)and install q2-SCNIC there to avoid any conflicts with already installed plugins.
+Note: This adds two additional packages, as well as their dependencies, into your qiime 2 environment. Let us know if this affects your usage of qiime 2 by raising an issue [here](https://github.com/shafferm/q2-SCNIC) or by posting on the [qiime 2 forum.](https://forum.qiime2.org) You also can [install a new qiime 2 environment](https://docs.qiime2.org/2018.6/install/) and install q2-SCNIC there to avoid any conflicts with already installed plugins.
 
 ## Getting data for q2-SCNIC
-To run q2-SCNIC you need to start with a[Feature table.](link.to.feature.table.definition) You can do this tutorial with one of your own that you have imported or generate with qiime 2 or with a sample one. If you already have a feature table to start with you can skip to Running q2-SCNIC.
+To run q2-SCNIC you need to start with a [Feature table.](https://docs.qiime2.org/2018.6/semantic-types/#common-semantic-types) You can do this tutorial with one of your own that you have imported or generate with qiime 2 or with a sample one. If you already have a feature table to start with you can skip to Running q2-SCNIC.
 
 ### Downloading an example feature table
 Use this command to download a sample figure table for analysis with q2-SCNIC.
@@ -48,7 +48,7 @@ SCNIC can be broken up into three main steps:
 We will run through these steps with the fake_data.qza generated above but you can run it with any feature table by changing the name of fake_data.qza to whatever your qza is called.
 
 ### 1. Filtering your data
-Correlational analyses are hampered by having large numbers of zeroes. Therefore we are first going to remove these from our data. In the q2-SCNIC plugin a method called `sparcc-filter` to do this based on the parameters used in [Friedman et al.](https://doi.org/10.1371/journal.pcbi.1002687) This method removes all samples with a feature abundance total below 500 and all features witht an average abundance less than 2 across all samples. You do not need to use these parameters and can use any method you chose to do this. Other methods for filtering feature tables are outlined[here.](https://docs.qiime2.org/latest/tutorials/filtering/)
+Correlational analyses are hampered by having large numbers of zeroes. Therefore we are first going to remove these from our data. In the q2-SCNIC plugin a method called `sparcc-filter` to do this based on the parameters used in [Friedman et al.](https://doi.org/10.1371/journal.pcbi.1002687) This method removes all samples with a feature abundance total below 500 and all features witht an average abundance less than 2 across all samples. You do not need to use these parameters and can use any method you chose to do this. Other methods for filtering feature tables are outlined [here.](https://docs.qiime2.org/2018.6/tutorials/filtering/)
 
 To use the sparcc filter use this command:
 ```
@@ -68,7 +68,7 @@ qiime SCNIC calculate-correlations \
   --p-method sparcc \
   --o-correlation-table fake_correls.qza
 ```
-Here we use the[sparCC](https://doi.org/10.1371/journal.pcbi.1002687)metric for measuring the strength of our correlation. This metric is recommended when you data is in the form of OTUs or ASVs ([Weiss et al. 2017](https://doi.org/10.1038/ismej.2015.235)). You may also use Pearson, Spearman or Kendall-Tau correlation.
+Here we use the [sparCC](https://doi.org/10.1371/journal.pcbi.1002687) metric for measuring the strength of our correlation. This metric is recommended when you data is in the form of OTUs or ASVs ([Weiss et al. 2017](https://doi.org/10.1038/ismej.2015.235)). You may also use Pearson, Spearman or Kendall-Tau correlation.
 
 #### (Optional) Making a correlation network
 From `fake_correls.qza` we can generate a network based on a minimum R value cutoff. A network will also be generated when finding modules but if you only want to make a network and not find modules you can do this and finish the tutorial here. This can be done using this command:
@@ -94,6 +94,6 @@ qiime SCNIC make-modules-on-correlation-table \
   --o-collapsed-table fake_data.collapsed.qza \
   --o-correlation-network fake_net.modules.qza
 ```
-The `fake_data.collapsed.qza` is a feature table you can use with any further non-phylogenetic analysis. `fake_net.modules.qza` is a network that is annotated with correlation information as well as module membership and can be exported from the `.qza` to visualize with tools such as[Cytoscape.](http://www.cytoscape.org/)
+The `fake_data.collapsed.qza` is a feature table you can use with any further non-phylogenetic analysis. `fake_net.modules.qza` is a network that is annotated with correlation information as well as module membership and can be exported from the `.qza` to visualize with tools such as [Cytoscape.](http://www.cytoscape.org/)
 
 With that you now have ran SCNIC and have a feature table with fewer features giving you more power for further analyses and a correlation network invesigate correlations between features in your community of interest.
