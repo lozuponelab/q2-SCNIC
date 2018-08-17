@@ -2,6 +2,11 @@
 
 SCNIC (Sparse Cooccurnce Network Investigation for Compositional data) is a tool for building correlation networks from feature tables, finding modules in said networks and summarizing those modules. Access to all these functionalities is available to qiime2 users via the q2-SCNIC plugin.
 
+The SCNIC method serves three main purposes:
+1. Making it easy for qiime 2 users to generate correlationt networks using a variety of metrics.
+2. Increasing statistical power by summarizing non-independent features into modules.
+3. Detecting modules of features which may be of biological interest.
+
 q2-SCNIC: https://github.com/shafferm/q2-SCNIC
 
 SCNIC: https://github.com/shafferm/SCNIC
