@@ -1,6 +1,6 @@
 import importlib
 
-from qiime2.plugin import (Str, Plugin, Choices, Float, Range, Bool)
+from qiime2.plugin import (Str, Plugin, Choices, Float, Range, Bool, Citations)
 from q2_types.feature_table import FeatureTable, Frequency
 
 from ._type import Network, PairwiseFeatureData
@@ -11,7 +11,7 @@ from ._SCNIC_methods import sparcc_filter, calculate_correlations, build_correla
 
 import q2_SCNIC
 
-# TODO: Add citations
+citations = Citations.load('citations.bib', package='q2_SCNIC')
 
 plugin = Plugin(
     name='SCNIC',
@@ -23,6 +23,7 @@ plugin = Plugin(
         'to build correlation networks as well as detect and '
         'summarize modules of highy intercorrelated features'),
     short_description='Plugin for SCNIC usage.',
+    citations=[citations['SciPyProceedings_11']]
 )
 
 plugin.register_semantic_types(Network)
@@ -72,6 +73,7 @@ plugin.methods.register_function(
     description=(
         'Build pairwise correlations between all observations in feature table'
     ),
+    citations=[citations['Friedman2012'], citations['Watts2018']]
 )
 
 plugin.methods.register_function(
