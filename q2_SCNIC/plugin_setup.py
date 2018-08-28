@@ -11,6 +11,8 @@ from ._SCNIC_methods import sparcc_filter, calculate_correlations, build_correla
 
 import q2_SCNIC
 
+# TODO: Add citations
+
 plugin = Plugin(
     name='SCNIC',
     version=q2_SCNIC.__version__,

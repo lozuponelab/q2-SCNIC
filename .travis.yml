@@ -1,23 +1,33 @@
 language: python
 before_install:
-  - export MPLBACKEND='Agg'
-  - wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-  - export MINICONDA_PREFIX="$HOME/miniconda"
-  - bash miniconda.sh -b -p $MINICONDA_PREFIX
-  - export PATH="$MINICONDA_PREFIX/bin:$PATH"
-  - conda config --set always_yes yes
-  - conda update -q conda
-  - conda info -a
+- export MPLBACKEND='Agg'
+- wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O
+  miniconda.sh
+- export MINICONDA_PREFIX="$HOME/miniconda"
+- bash miniconda.sh -b -p $MINICONDA_PREFIX
+- export PATH="$MINICONDA_PREFIX/bin:$PATH"
+- conda config --set always_yes yes
+- conda update -q conda
+- conda info -a
 install:
-  - wget -q https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py35-linux-conda.yml
-  - conda env create -q -n test-env --file qiime2-latest-py35-linux-conda.yml
-  - source activate test-env
-  - conda config --add channels bioconda
-  - conda config --add channels conda-forge
-  - conda install -q networkx fastspar pytest-cov coveralls
-  - pip install SCNIC
-  - pip install --no-cache-dir --editable .
+- wget -q https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py35-linux-conda.yml
+- conda env create -q -n test-env --file qiime2-latest-py35-linux-conda.yml
+- source activate test-env
+- conda config --add channels bioconda
+- conda config --add channels conda-forge
+- conda install -q networkx fastspar pytest-cov coveralls
+- pip install SCNIC
+- pip install --no-cache-dir --editable .
 script:
-  - py.test --cov q2_SCNIC --cov-report term-missing
+- py.test --cov q2_SCNIC --cov-report term-missing
 after_success:
-  - coveralls
+- coveralls
+deploy:
+  provider: pypi
+  user: michael.shaffer
+  password:
+    secure: xbR36uibB/m1BGhIPTN4zNKgJ7dtgvWsiB4M4IVgB/0JpI8Koz6gnazG0prilmhO/IAr6LGGFrrg4HVu4WDk2daBYzqJfa0W+gacHlao935krsAbFc1C0le4uWwre8H6t7uZkcoYW0OuMUO+orWp8fTF8pmm6V8MLnfcrfICNvVS7bcmtof9nTlAlCiwrYPDZpyKocn501NyWlLE7XEJNpH2VhgDgoDeF2UNxW0vmZPz8OIcIq2f+yBCVJ63PcBAYV3gKwOVeSGtPhXGQfMqkf1iwp/qsKcPJWjjm2YaEGgXnvJkNwPC28tWUcsT3AHr4CvJWQZD5W2KVKtW8yPuJvhM6++jUiHclUhvigBQyIhW4vXADiAepuz/bJAgfP7xqZjP3AFTAoo6gAPGvYyxeF6zo/q5eQhTJx7MsgYt1eUDSyNYXuLCJW0arsl6z5rK/ryJfYYzQXlP8Xd7wYfSxGKQ0k3qSvZ0aOVJNKwh32rjakJbAeXfGc7v3gsg8ibVttrG61rWZSE74LufLyLvpikpWY3pwrywFF5sEpRl6qd9lraPdY8wamUhFcIYmt2fyUx0H8xFdjtwidmHiljyfddvDdMgd5JYMIEkwPimjByyj1hYLhsL1Emor6KwYu0QLG350AiQ2FO4mTOK8l3hY2r7hjXxAv+gpYFHjTL7wLg=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: shafferm/q2-SCNIC
