@@ -41,14 +41,19 @@ def build_correlation_network_p(correlation_table: pd.DataFrame, max_val: float=
 
 
 def make_modules_on_correlation_table(correlation_table: pd.DataFrame, feature_table: Table, min_r: float=.35) -> \
-                                     (Table, nx.Graph):
+                                     (Table, nx.Graph, pd.Series):
     min_dist = ma.cor_to_dist(min_r)
     cor, labels = ma.correls_to_cor(correlation_table)
     dist = ma.cor_to_dist(cor)
     modules = ma.make_modules(dist, min_dist, obs_ids=labels)
+    modules_rev = {asv: module for module, asvs in modules.items() for asv in asvs}
+    for asv in feature_table.ids(axis='observation'):
+        if asv not in modules_rev:
+            modules_rev[asv] = None
+    module_membership = pd.Series(modules_rev)
     coll_table = ma.collapse_modules(feature_table, modules)
     metadata = get_metadata_from_table(feature_table)
     metadata = ma.add_modules_to_metadata(modules, metadata)
     correlation_table_filtered = filter_correls(correlation_table, conet=True, min_r=min_r)
     net = correls_to_net(correlation_table_filtered, metadata=metadata)
-    return coll_table, net
+    return coll_table, net, module_membership

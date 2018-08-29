@@ -42,7 +42,6 @@ def test_sparcc_filter(table):
 
 
 def test_calculate_correlations(table, correls_spar, correls_pear):
-    # TODO: generate results for pearman test
     test_correls_pear = calculate_correlations(table, method='pearson')
     assert_allclose(test_correls_pear.values, correls_pear.values, atol=.05)
     test_correls_spar = calculate_correlations(table, method='sparcc')
@@ -62,8 +61,9 @@ def test_build_correlation_network_p(correls_pear):
 
 
 def test_make_modules_on_correlation_table(correls_spar, table):
-    test_collapsed, test_net = make_modules_on_correlation_table(correls_spar, table, min_r=.5)
+    test_collapsed, test_net, test_modules = make_modules_on_correlation_table(correls_spar, table, min_r=.5)
     assert test_collapsed.shape == (49, 200)
     assert table.sum() == test_collapsed.sum()
     assert len(test_net.nodes) == 2
     assert len(test_net.edges) == 1
+    assert len(test_modules) == table.shape[0]

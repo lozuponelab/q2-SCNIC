@@ -1,11 +1,11 @@
 import importlib
 
-from qiime2.plugin import (Str, Plugin, Choices, Float, Range, Bool, Citations)
+from qiime2.plugin import (Str, Plugin, Choices, Float, Range, Bool, Citations, Metadata)
 from q2_types.feature_table import FeatureTable, Frequency
 
-from ._type import Network, PairwiseFeatureData
+from ._type import Network, PairwiseFeatureData, ModuleMembership
 from ._format import GraphModelingLanguageFormat, GraphModelingLanguageDirectoryFormat, PairwiseFeatureDataFormat, \
-                     PairwiseFeatureDataDirectoryFormat
+                     PairwiseFeatureDataDirectoryFormat, ModuleMembershipTSVFormat, ModuleMembershipTSVDirectoryFormat
 from ._SCNIC_methods import sparcc_filter, calculate_correlations, build_correlation_network_r, \
                             build_correlation_network_p, make_modules_on_correlation_table
 
@@ -28,14 +28,18 @@ plugin = Plugin(
 
 plugin.register_semantic_types(Network)
 plugin.register_semantic_types(PairwiseFeatureData)
+plugin.register_semantic_types(ModuleMembership)
 
 plugin.register_formats(GraphModelingLanguageFormat)
 plugin.register_formats(GraphModelingLanguageDirectoryFormat)
 plugin.register_formats(PairwiseFeatureDataFormat)
 plugin.register_formats(PairwiseFeatureDataDirectoryFormat)
+plugin.register_formats(ModuleMembershipTSVFormat)
+plugin.register_formats(ModuleMembershipTSVDirectoryFormat)
 
 plugin.register_semantic_type_to_format(Network, artifact_format=GraphModelingLanguageDirectoryFormat)
 plugin.register_semantic_type_to_format(PairwiseFeatureData, artifact_format=PairwiseFeatureDataDirectoryFormat)
+plugin.register_semantic_type_to_format(ModuleMembership, artifact_format=ModuleMembershipTSVDirectoryFormat)
 
 plugin.methods.register_function(
     function=sparcc_filter,
@@ -57,7 +61,7 @@ plugin.methods.register_function(
     function=calculate_correlations,
     inputs={'table': FeatureTable[Frequency]},  # TODO: Generalize, don't require frequency
     parameters={'method': Str % Choices(['kendall', 'pearson', 'spearman', 'sparcc']),
-                'p_adjustment_method': Str, 'verbose': Bool},
+                'p_adjustment_method': Str},
     outputs=[('correlation_table', PairwiseFeatureData)],
     input_descriptions={'table': (
         'Normalized and filtered feature table to use for microbial interdependence test.')},
@@ -65,8 +69,7 @@ plugin.methods.register_function(
         'method': 'The correlation test to be applied.',
         'p_adjustment_method': 'The method for p-value adjustment to be applied. '
                                'This can be selected from the list of methods in '
-                               'statsmodels multipletests.',
-        'verbose': 'Force verbose output'
+                               'statsmodels multipletests.'
     },
     output_descriptions={'correlation_table': 'The resulting table of pairwise correlations with R and p-value.'},
     name='Build pairwise correlations between observations',
@@ -123,7 +126,8 @@ plugin.methods.register_function(
             'feature_table': FeatureTable[Frequency]},
     parameters={'min_r': Float % Range(0, 1, inclusive_end=True)},
     outputs=[('collapsed_table', FeatureTable[Frequency]),
-             ('correlation_network', Network)],
+             ('correlation_network', Network),
+             ('module_membership', ModuleMembership)],
     input_descriptions={
         'correlation_table': 'Pairwise feature data table of correlations.',
         'feature_table': 'Feature table used to calculated correlations'
@@ -133,6 +137,7 @@ plugin.methods.register_function(
         'collapsed_table': 'Feature table with module members collapsed into single observations.',
         'correlation_network': 'Network annotated with module membership and edges where correlation'
                                'was stronger than min_r',
+        'module_membership': 'Feature metadata with module membership'
     },
     name='Find modules via the SCNIC method',
     description=(

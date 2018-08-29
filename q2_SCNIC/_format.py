@@ -44,3 +44,20 @@ class GraphModelingLanguageFormat(model.TextFileFormat):
 
 GraphModelingLanguageDirectoryFormat = model.SingleFileDirectoryFormat(
     'GraphModelingLanguageDirectoryFormat', 'network.gml', GraphModelingLanguageFormat)
+
+
+class ModuleMembershipTSVFormat(model.TextFileFormat):
+    def _validate_(self, level):
+        if level == 'min':
+            nrows = 8
+        elif level == 'max':
+            nrows = None
+        else:
+            raise ValueError('Nonstandard level value')
+        series = pd.read_table(self.path, header=None, squeeze=True, nrows=nrows, index_col=0)
+        if type(series) != pd.Series:
+            raise ValidationError('File has more than one column: %s' % series.head())
+
+
+ModuleMembershipTSVDirectoryFormat = model.SingleFileDirectoryFormat(
+    'ModuleMembershipTSVDirectoryFormat', 'module-membership.tsv', ModuleMembershipTSVFormat)
