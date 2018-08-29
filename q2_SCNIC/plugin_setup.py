@@ -1,6 +1,6 @@
 import importlib
 
-from qiime2.plugin import (Str, Plugin, Choices, Float, Range, Bool, Citations, Metadata)
+from qiime2.plugin import (Str, Plugin, Choices, Float, Range, Bool, Citations, Int)
 from q2_types.feature_table import FeatureTable, Frequency
 
 from ._type import Network, PairwiseFeatureData, ModuleMembership
@@ -61,7 +61,7 @@ plugin.methods.register_function(
     function=calculate_correlations,
     inputs={'table': FeatureTable[Frequency]},  # TODO: Generalize, don't require frequency
     parameters={'method': Str % Choices(['kendall', 'pearson', 'spearman', 'sparcc']),
-                'p_adjustment_method': Str},
+                'p_adjustment_method': Str, 'n_procs': Int},
     outputs=[('correlation_table', PairwiseFeatureData)],
     input_descriptions={'table': (
         'Normalized and filtered feature table to use for microbial interdependence test.')},
@@ -69,7 +69,8 @@ plugin.methods.register_function(
         'method': 'The correlation test to be applied.',
         'p_adjustment_method': 'The method for p-value adjustment to be applied. '
                                'This can be selected from the list of methods in '
-                               'statsmodels multipletests.'
+                               'statsmodels multipletests.',
+        'n_procs': 'Number of processors to use in correlation analysis'
     },
     output_descriptions={'correlation_table': 'The resulting table of pairwise correlations with R and p-value.'},
     name='Build pairwise correlations between observations',
