@@ -2,8 +2,9 @@ import pytest
 from os import path
 import pandas as pd
 import networkx as nx
+import qiime2
 
-from q2_SCNIC._transformer import _1, _2, _3, _4
+from q2_SCNIC._transformer import _1, _2, _3, _4, _5, _6
 
 @pytest.fixture()
 def data_path():
@@ -42,5 +43,21 @@ def test_3(net):
 
 def test_4(data_path, net):
     test_net = _4(path.join(data_path, 'fake_net.gml'))
-    assert type(test_net) == nx.Graph
+    assert type(test_net) is nx.Graph
     nx.is_isomorphic(test_net, net)
+
+
+@pytest.fixture()
+def module_membership(data_path):
+    df = pd.read_table(path.join(data_path, 'fake_membership.txt'), index_col=0, header=None, dtype=str, squeeze=True)
+    return df
+
+
+def test_5(module_membership):
+    format = _5(module_membership)
+    assert format.open().read() == module_membership.to_csv(sep='\t')
+
+
+def test_6(data_path):
+    test_meta = _6(path.join(data_path, 'fake_membership.txt'))
+    assert type(test_meta) is qiime2.Metadata
