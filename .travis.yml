@@ -15,8 +15,7 @@ install:
 - source activate test-env
 - conda config --add channels bioconda
 - conda config --add channels conda-forge
-- conda install -q networkx fastspar pytest-cov coveralls
-- pip install SCNIC
+- conda install -q pytest-cov coveralls scnic
 - pip install --no-cache-dir --editable .
 script:
 - py.test --cov q2_SCNIC --cov-report term-missing
