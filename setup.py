@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-__version__ = '2018.6.1'
+__version__ = '2018.8'
 
 setup(
     name='q2-SCNIC',

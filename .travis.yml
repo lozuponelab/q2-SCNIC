@@ -14,8 +14,8 @@ before_install:
 - conda config --add channels conda-forge
 - conda info -a
 install:
-- wget -q https://raw.githubusercontent.com/qiime2/environment-files/master/2018.6/release/qiime2-2018.6-py35-linux-conda.yml
-- conda env create -q -n test-env --file qiime2-2018.6-py35-linux-conda.yml
+- wget -q https://raw.githubusercontent.com/qiime2/environment-files/master/2018.8/release/qiime2-2018.8-py35-linux-conda.yml
+- conda env create -q -n test-env --file qiime2-2018.8-py35-linux-conda.yml
 - source activate test-env
 - conda install -q pytest-cov coveralls scnic>=0.5.3
 - pip install --no-cache-dir --editable .
@@ -27,7 +27,7 @@ deploy:
   provider: pypi
   user: michael.shaffer
   password:
-    secure: iag2TCMd+OW3LNna9tJ1QYBmT+frCylevCmSKAvx28nU75Z/hlseCGBXTl5ayvbSRQoANDe6PeS6lZ6n4v7N/2MmlEGluyeqb3zAdqpGFMn0//hoC7OweUTF8+D6NdV75+TsTo0W4cDWVDPVAivA8toZ1PPnna63KKs9f5ssvyN/QfViyjvyhh/W2XO0U0oTYeWxjoxqyvfvuY2pAymZupquJXMc1eA1ch3FSKJya4tXcs+jpJYSr+d14a2rp8KjidZNesWgtnKOJtJ+H/scaO6qDCj0cgQLyqEqfz5xbZrD/eWp48CiRZvtQQEUQAvaaqxeUGo4Bs0ibBRa9bFQzOWDK5YeaAXj2y9wduzyOMbbiPQoAkZ3LSL17aRuaUr5tAKoVh2TcwzUcq3VIt+B3MRy0duwR0ah+afmc2t0DXxW4XwQ9vYt4ALTbCcjqzRipfx6KRmEzuH+2ozQFwIbILJbSJyWUv5XFmtuOqz7QG/ITvW4AftQQ+yjWbRjG3x1BURXnl6W94EDWKOsho6twY1yDU8q5R+BjkNtkbd1DRu94fBoCv9jRP7j/Zlk0uo2gXUmpJ7d4wT+Ho311kcvoVbUsakupZzuORlZOIwhIA7NmBKAwld8MINU3W5cZkYucmpkVnh9rzplwHTuOrqRa1rkTVDpHeR8LOFgxmxdEOs=
+    secure: bFjtVA4BJhfEGENCC2K41Bwy1h50e6O/61mEMStxRWoxltZwUSOIcQk/xjLCs3NfJgboiNxuYRkJTKc++zmqT/tUA8UODtU/liTajOA3mFxsB0nd0rBDqzkxF+w88qM+FohUsdQOcANdL5bXaqjrB5nX5pX3WcLf16OE7/F2erGIYXawdlXGjsNZoSHEx69kOl69vLOrLN9KxTgZJfZ/2PAVydy5kIraBblNsRnerXVivibwM0rWC0z8zVFJpdPNCcGOj+2A2PooZXhJfV7uWZMFcnsgkwVUjvt5ZTGL1sa5I59GWDM18290trysppp/k22I/Rnusshfd0KAiHjF5Fs4y/Th93SvEFDv+8wK/JpxuFPVNzu7iIkUU/4q9OD1iSTzjAsy27gKPKMe/y5mvHe5cJywueSsGyWZAHt9AGt5bS6qud39vWJEHO1CbX4IbfofXIuibHjSC0ZlY3NhVK3W/tWsP0PvvEl1Wos36VbdKpfp2xZpKPahjrSGW6OkEaNRF3A4HO43tKWAsI7VPKtoJx30GTi3CApszEoIQnqnN8pORJAAOxpnntTHYKzzLojlDRQsLsJGBp40FtV6h4G6idcbPZNVfJg6DBtjkFYLBJQ8JpgTyLsEN/6gTr75znGmg3c2yXVbKZ4Z8h3TyYWWGkOi8mG9mSujDOnqMCA=
   on:
     tags: true
     distributions: sdist bdist_wheel
