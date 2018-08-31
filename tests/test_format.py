@@ -1,7 +1,7 @@
 import pytest
 from os import path
 
-from  q2_SCNIC._format import PairwiseFeatureDataFormat, GraphModelingLanguageFormat, ModuleMembershipTSVFormat
+from q2_SCNIC._format import PairwiseFeatureDataFormat, GraphModelingLanguageFormat, ModuleMembershipTSVFormat
 
 
 @pytest.fixture()
