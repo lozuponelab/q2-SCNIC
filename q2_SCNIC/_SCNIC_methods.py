@@ -40,7 +40,7 @@ def build_correlation_network_p(correlation_table: pd.DataFrame, max_val: float=
     return net
 
 
-def make_modules_on_correlation_table(correlation_table: pd.DataFrame, feature_table: Table, min_r: float=.35) -> \
+def make_modules_on_correlations(correlation_table: pd.DataFrame, feature_table: Table, min_r: float=.35) -> \
                                      (Table, nx.Graph, pd.Series):
     min_dist = ma.cor_to_dist(min_r)
     cor, labels = ma.correls_to_cor(correlation_table)

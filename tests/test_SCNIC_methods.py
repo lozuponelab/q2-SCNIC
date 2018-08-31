@@ -5,7 +5,7 @@ import pandas as pd
 from biom import load_table
 
 from q2_SCNIC._SCNIC_methods import sparcc_filter, calculate_correlations, build_correlation_network_r, \
-                                    build_correlation_network_p, make_modules_on_correlation_table
+                                    build_correlation_network_p, make_modules_on_correlations
 
 
 @pytest.fixture()
@@ -60,8 +60,8 @@ def test_build_correlation_network_p(correls_pear):
     assert len(test_net.edges) == 18
 
 
-def test_make_modules_on_correlation_table(correls_spar, table):
-    test_collapsed, test_net, test_modules = make_modules_on_correlation_table(correls_spar, table, min_r=.5)
+def test_make_modules_on_correlations(correls_spar, table):
+    test_collapsed, test_net, test_modules = make_modules_on_correlations(correls_spar, table, min_r=.5)
     assert test_collapsed.shape == (49, 200)
     assert table.sum() == test_collapsed.sum()
     assert len(test_net.nodes) == 2

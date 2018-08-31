@@ -7,7 +7,7 @@ from ._type import Network, PairwiseFeatureData, ModuleMembership
 from ._format import GraphModelingLanguageFormat, GraphModelingLanguageDirectoryFormat, PairwiseFeatureDataFormat, \
                      PairwiseFeatureDataDirectoryFormat, ModuleMembershipTSVFormat, ModuleMembershipTSVDirectoryFormat
 from ._SCNIC_methods import sparcc_filter, calculate_correlations, build_correlation_network_r, \
-                            build_correlation_network_p, make_modules_on_correlation_table
+                            build_correlation_network_p, make_modules_on_correlations
 
 import q2_SCNIC
 
@@ -120,9 +120,8 @@ plugin.methods.register_function(
 )
 
 # TODO: expose min_p based module making
-# TODO: output module information as metadata
 plugin.methods.register_function(
-    function=make_modules_on_correlation_table,
+    function=make_modules_on_correlations,
     inputs={'correlation_table': PairwiseFeatureData,
             'feature_table': FeatureTable[Frequency]},
     parameters={'min_r': Float % Range(0, 1, inclusive_end=True)},
