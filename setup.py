@@ -4,6 +4,7 @@ __version__ = '2018.6.1'
 
 setup(
     name='q2-SCNIC',
+    version=__version__,
     license='BSD-3-Clause',
     packages=find_packages(),
     author="Michael Shaffer",
