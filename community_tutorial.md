@@ -25,7 +25,7 @@ Note: This adds a few additional packages into your qiime 2 environment. Let us 
 To run q2-SCNIC you need to start with a [Feature table.](https://docs.qiime2.org/2018.8/semantic-types/#common-semantic-types) You can do this tutorial with one of your own that you have imported or generate with qiime 2 or with a sample one. If you already have a feature table to start with you can skip to Running q2-SCNIC.
 
 ### Downloading an example feature table
-Use this command to download a sample figure table for analysis with q2-SCNIC.
+Use this command to download a sample feature table for analysis with q2-SCNIC.
 ```
 wget https://github.com/shafferm/q2-SCNIC/raw/master/tests/data/fake_data.biom
 ```
@@ -37,7 +37,7 @@ qiime tools import \
   --input-format BIOMV210Format \
   --output-path fake_data.qza
 ```
-Now you have a qza file of your feature table to run q2-SCNIC.
+Now you have a filtered `.qza` file of your feature table to run q2-SCNIC.
 
 ## Running q2-SCNIC
 SCNIC can be broken up into three main steps:
