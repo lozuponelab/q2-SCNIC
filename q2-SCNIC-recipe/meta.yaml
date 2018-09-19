@@ -1,0 +1,34 @@
+{% set version = "2018.8.0" %}
+
+package:
+  name: q2-scnic
+  version: {{ version }}
+
+source:
+#  url: https://github.com/shafferm/q2-SCNIC/archive/{{ version }}.tar.gz
+  path: ../../q2-SCNIC
+
+build:
+  number: 0
+  noarch: python
+
+requirements:
+  host:
+    - python =3.5.*
+    - setuptools
+  run:
+    - python =3.5.*
+    - scnic >=0.5.3
+    - qiime2 =2018.8.*
+    - q2-types =2018.8.*
+
+test:
+  imports:
+    - q2_SCNIC
+    - qiime2.plugins.SCNIC
+
+about:
+  home: https://github.com/shafferm/q2-SCNIC
+  license: BSD
+  license_file: LICENSE
+  summary: "q2-SCNIC: a qiime2 plugin for SCNIC (https://github.com/shafferm/SCNIC)"
