@@ -13,6 +13,11 @@ SCNIC: https://github.com/shafferm/SCNIC
 
 ## Installing q2-SCNIC
 
+If you are using qiime 2 2018.8 or later then you must first force an update of your blas version:
+```
+conda install -c conda-forge blas=1.1
+```
+
 q2-SCNIC is available via bioconda so installing is easy. Just enter into your qiime 2 conda environment and use this command:
 ```
 conda install -c lozuponelab q2-SCNIC
