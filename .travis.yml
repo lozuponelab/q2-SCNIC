@@ -23,12 +23,3 @@ script:
 - py.test --cov q2_SCNIC --cov-report term-missing
 after_success:
 - coveralls
-deploy:
-  provider: pypi
-  user: michael.shaffer
-  password:
-    secure: bFjtVA4BJhfEGENCC2K41Bwy1h50e6O/61mEMStxRWoxltZwUSOIcQk/xjLCs3NfJgboiNxuYRkJTKc++zmqT/tUA8UODtU/liTajOA3mFxsB0nd0rBDqzkxF+w88qM+FohUsdQOcANdL5bXaqjrB5nX5pX3WcLf16OE7/F2erGIYXawdlXGjsNZoSHEx69kOl69vLOrLN9KxTgZJfZ/2PAVydy5kIraBblNsRnerXVivibwM0rWC0z8zVFJpdPNCcGOj+2A2PooZXhJfV7uWZMFcnsgkwVUjvt5ZTGL1sa5I59GWDM18290trysppp/k22I/Rnusshfd0KAiHjF5Fs4y/Th93SvEFDv+8wK/JpxuFPVNzu7iIkUU/4q9OD1iSTzjAsy27gKPKMe/y5mvHe5cJywueSsGyWZAHt9AGt5bS6qud39vWJEHO1CbX4IbfofXIuibHjSC0ZlY3NhVK3W/tWsP0PvvEl1Wos36VbdKpfp2xZpKPahjrSGW6OkEaNRF3A4HO43tKWAsI7VPKtoJx30GTi3CApszEoIQnqnN8pORJAAOxpnntTHYKzzLojlDRQsLsJGBp40FtV6h4G6idcbPZNVfJg6DBtjkFYLBJQ8JpgTyLsEN/6gTr75znGmg3c2yXVbKZ4Z8h3TyYWWGkOi8mG9mSujDOnqMCA=
-  on:
-    tags: true
-    distributions: sdist bdist_wheel
-    repo: shafferm/q2-SCNIC
