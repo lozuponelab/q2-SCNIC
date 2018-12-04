@@ -15,11 +15,12 @@ def sparcc_filter(table: Table) -> Table:
 correl_methods = {'spearman': spearmanr, 'pearson': pearsonr, 'kendall': kendalltau, 'sparcc': 'sparcc'}
 
 
-def calculate_correlations(table: Table, method: str, p_adjustment_method: str = 'fdr_bh', n_procs: int = 1) -> pd.DataFrame:
+def calculate_correlations(table: Table, method: str, p_adjustment_method: str = 'fdr_bh', n_procs: int = 1) -> \
+        pd.DataFrame:
     print("Correlating with %s" % method)
     method = correl_methods[method]
     if method in [spearmanr, pearsonr, kendalltau]:
-        correls = ca.calculate_correlations(table, method, p_adjustment_method=p_adjustment_method, nprocs=n_procs)
+        correls = ca.calculate_correlations(table, method, p_adjust_method=p_adjustment_method, nprocs=n_procs)
     elif method == 'sparcc':
         correls = ca.fastspar_correlation(table, verbose=True, nprocs=n_procs)
     else:
@@ -42,10 +43,7 @@ def build_correlation_network_p(correlation_table: pd.DataFrame, max_val: float=
 
 def make_modules_on_correlations(correlation_table: pd.DataFrame, feature_table: Table, min_r: float=.35) -> \
                                      (Table, nx.Graph, pd.Series):
-    min_dist = ma.cor_to_dist(min_r)
-    cor, labels = ma.correls_to_cor(correlation_table)
-    dist = ma.cor_to_dist(cor)
-    modules = ma.make_modules(dist, min_dist, obs_ids=labels)
+    modules = ma.make_modules_naive(correlation_table, min_r=min_r)
     modules_rev = {asv: module for module, asvs in modules.items() for asv in asvs}
     for asv in feature_table.ids(axis='observation'):
         if asv not in modules_rev:

@@ -110,4 +110,4 @@ qiime meta tabulate \
 ```
 This visualization can then be used to see what features are in each module.
 
-With that you have ran SCNIC and have a feature table with fewer features giving you more power for further analyses and a correlation network invesigate correlations between features in your community of interest.
+With that you have ran SCNIC and have a feature table with fewer features giving you more power for further analyses and a correlation network investigate correlations between features in your community of interest.

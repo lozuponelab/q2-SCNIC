@@ -1,12 +1,12 @@
-{% set version = "2018.8.0" %}
+{% set version = "2018.11.0" %}
 
 package:
   name: q2-scnic
   version: {{ version }}
 
 source:
-  url: https://github.com/shafferm/q2-SCNIC/archive/{{ version }}.tar.gz
-#  path: ../../q2-SCNIC
+#  url: https://github.com/shafferm/q2-SCNIC/archive/{{ version }}.tar.gz
+  path: ../../q2-SCNIC
 
 build:
   number: 0
@@ -18,9 +18,9 @@ requirements:
     - setuptools
   run:
     - python =3.5.*
-    - scnic >=0.5.3
-    - qiime2 =2018.8.*
-    - q2-types =2018.8.*
+    - scnic >=0.6.*
+    - qiime2 =2018.11*
+    - q2-types =2018.11.*
 
 test:
   imports:
