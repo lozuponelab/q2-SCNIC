@@ -15,14 +15,18 @@ def sparcc_filter(table: Table) -> Table:
 correl_methods = {'spearman': spearmanr, 'pearson': pearsonr, 'kendall': kendalltau, 'sparcc': 'sparcc'}
 
 
-def calculate_correlations(table: Table, method: str, p_adjustment_method: str = 'fdr_bh', n_procs: int = 1) -> \
-        pd.DataFrame:
+def calculate_correlations(table: Table, method: str, p_adjustment_method: str = 'fdr_bh',
+                           n_procs: int = 1, sparcc_p: bool = False, bootstraps: int = 1000) -> pd.DataFrame:
     print("Correlating with %s" % method)
     method = correl_methods[method]
     if method in [spearmanr, pearsonr, kendalltau]:
         correls = ca.calculate_correlations(table, method, p_adjust_method=p_adjustment_method, nprocs=n_procs)
     elif method == 'sparcc':
-        correls = ca.fastspar_correlation(table, verbose=True, nprocs=n_procs)
+        if sparcc_p:
+            correls = ca.fastspar_correlation(table, verbose=True, nprocs=n_procs, calc_pvalues=True,
+                                              bootstraps=bootstraps, p_adjust_method=p_adjustment_method)
+        else:
+            correls = ca.fastspar_correlation(table, verbose=True, nprocs=n_procs)
     else:
         raise ValueError('Provided correlation metric is not an accepted method.')
     return correls

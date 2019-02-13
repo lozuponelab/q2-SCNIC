@@ -3,10 +3,10 @@ import importlib
 from qiime2.plugin import (Str, Plugin, Choices, Float, Range, Bool, Citations, Int)
 from q2_types.feature_table import FeatureTable, Frequency
 
-from ._type import Network, PairwiseFeatureData, ModuleMembership
-from ._format import GraphModelingLanguageFormat, GraphModelingLanguageDirectoryFormat, PairwiseFeatureDataFormat, \
+from q2_SCNIC._type import Network, PairwiseFeatureData, ModuleMembership
+from q2_SCNIC._format import GraphModelingLanguageFormat, GraphModelingLanguageDirectoryFormat, PairwiseFeatureDataFormat, \
                      PairwiseFeatureDataDirectoryFormat, ModuleMembershipTSVFormat, ModuleMembershipTSVDirectoryFormat
-from ._SCNIC_methods import sparcc_filter, calculate_correlations, build_correlation_network_r, \
+from q2_SCNIC._SCNIC_methods import sparcc_filter, calculate_correlations, build_correlation_network_r, \
                             build_correlation_network_p, make_modules_on_correlations
 
 import q2_SCNIC
@@ -61,7 +61,7 @@ plugin.methods.register_function(
     function=calculate_correlations,
     inputs={'table': FeatureTable[Frequency]},  # TODO: Generalize, don't require frequency
     parameters={'method': Str % Choices(['kendall', 'pearson', 'spearman', 'sparcc']),
-                'p_adjustment_method': Str, 'n_procs': Int},
+                'p_adjustment_method': Str, 'n_procs': Int, 'sparcc_p': Bool, 'bootstraps': Int},
     outputs=[('correlation_table', PairwiseFeatureData)],
     input_descriptions={'table': (
         'Normalized and filtered feature table to use for microbial interdependence test.')},
@@ -70,7 +70,10 @@ plugin.methods.register_function(
         'p_adjustment_method': 'The method for p-value adjustment to be applied. '
                                'This can be selected from the list of methods in '
                                'statsmodels multipletests.',
-        'n_procs': 'Number of processors to use in correlation analysis'
+        'n_procs': 'Number of processors to use in correlation analysis',
+        'sparcc_p': 'Calculate sparCC p-value using permutation test.',
+        'bootstraps': 'Give number of bootstraps for sparCC p-value calculation. Will dramatically increase runtime'
+                      'based on number of bootstraps.'
     },
     output_descriptions={'correlation_table': 'The resulting table of pairwise correlations with R and p-value.'},
     name='Build pairwise correlations between observations',

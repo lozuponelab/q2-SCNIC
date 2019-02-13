@@ -19,7 +19,10 @@ install:
 - source activate test-env
 - conda install -q pytest-cov coveralls scnic>=0.5.3 blas=1.1
 - pip install --no-cache-dir --editable .
+- python q2_SCNIC/plugin_setup.py
+- qiime dev refresh-cache
 script:
 - py.test --cov q2_SCNIC --cov-report term-missing
+- qiime SCNIC --help
 after_success:
 - coveralls
