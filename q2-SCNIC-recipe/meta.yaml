@@ -1,4 +1,4 @@
-{% set version = "2018.11.0" %}
+{% set version = "2020.06.0" %}
 
 package:
   name: q2-scnic
@@ -14,13 +14,13 @@ build:
 
 requirements:
   host:
-    - python =3.5.*
+    - python =3.6.*
     - setuptools
   run:
-    - python =3.5.*
+    - python =3.6.*
     - scnic >=0.6.*
-    - qiime2 =2018.11*
-    - q2-types =2018.11.*
+    - qiime2 =2020.06*
+    - q2-types =2020.06.*
 
 test:
   imports:
