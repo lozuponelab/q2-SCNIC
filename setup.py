@@ -1,10 +1,10 @@
 from setuptools import find_packages, setup
-
-__version__ = '2018.8'
+import versioneer
 
 setup(
     name='q2-SCNIC',
-    version=__version__,
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     license='BSD-3-Clause',
     packages=find_packages(),
     author="Michael Shaffer",
