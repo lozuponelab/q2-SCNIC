@@ -3,26 +3,25 @@
 {% set release = '.'.join(version.split('.')[:2]) %}
 
 package:
-  name: q2-scnic
+  name: q2-SCNIC
   version: {{ version }}
 
 source:
 #  url: https://github.com/shafferm/q2-SCNIC/archive/{{ version }}.tar.gz
-  path: ../../q2-SCNIC
+  path: ../..
 
 build:
-  number: 0
-  noarch: python
+  script: make install
 
 requirements:
   host:
-    - python =3.6.*
+    - python {{ python }}
     - setuptools
   run:
-    - python =3.6.*
-    - scnic >=0.6.*
-    - qiime2 = {{ release }}.*
-    - q2-types = {{ release }}.*
+    - python {{ python }}
+    - scnic 0.6.1
+    - qiime2 {{ release }}.*
+    - q2-types {{ release }}.*
 
 test:
   imports:
