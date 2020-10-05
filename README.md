@@ -2,7 +2,7 @@
 
 # q2-SCNIC
 
-A package for accessing the primary methods of [SCNIC](https://www.github.com/shafferm/SCNIC) via QIIME2.
+A package for accessing the primary methods of [SCNIC](https://www.github.com/lozuponelab/SCNIC) via QIIME2.
 
 # Installation
 
@@ -15,7 +15,7 @@ conda install -q scnic
 Next to install the plugin:
 
 ```
-pip install git+https://github.com/shafferm/q2-SCNIC.git
+pip install git+https://github.com/lozuponelab/q2-SCNIC.git
 qiime dev refresh-cache
 ```
 
