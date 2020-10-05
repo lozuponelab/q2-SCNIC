@@ -3,3 +3,24 @@
 # q2-SCNIC
 
 A package for accessing the primary methods of [SCNIC](https://www.github.com/shafferm/SCNIC) via QIIME2.
+
+# Installation
+
+First, make sure you have SCNIC installed:
+
+```
+conda install -q scnic
+```
+
+Next to install the plugin:
+
+```
+pip install git+https://github.com/shafferm/q2-SCNIC.git
+qiime dev refresh-cache
+```
+
+Finally to see what functions are available, you can use:
+
+```
+qiime SCNIC --help
+```
