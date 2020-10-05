@@ -8,7 +8,7 @@ setup(
     license='BSD-3-Clause',
     packages=find_packages(),
     author="Michael Shaffer, Kumar Thurimella",
-    author_email="CATHERINE.LOZUPONE@cuanschutz.edu",
+    author_email="lozuponelab.dev@olucdenver.onmicrosoft.com",
     description=(
         "QIIME2 plugin for using SCNIC."),
     url="https://github.com/lozuponelab/q2-SCNIC",
