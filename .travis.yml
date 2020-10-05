@@ -19,7 +19,8 @@ install:
   - source activate test-env
   - conda install -q pytest-cov
   - conda install -c conda-forge blas=1.1
-  - pip install -q flake8 coveralls scnic
+  - conda install -c bioconda scnic
+  - pip install -q flake8 coveralls
   - pip install -q https://github.com/qiime2/q2lint/archive/master.zip
   - make install
 script:
