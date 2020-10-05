@@ -41,6 +41,7 @@ def test_sparcc_filter(table):
     assert table_filt.shape == table.shape
 
 
+@pytest.mark.skip(reason="Fastspar isn't properly installed during build via PIP")
 def test_calculate_correlations(table, correls_spar, correls_pear):
     test_correls_pear = calculate_correlations(table, method='pearson')
     assert_allclose(test_correls_pear.values, correls_pear.values, atol=.05)
