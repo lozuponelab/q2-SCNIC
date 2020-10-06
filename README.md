@@ -12,6 +12,12 @@ First, make sure you have SCNIC installed:
 conda install -q scnic
 ```
 
+OR
+
+```
+pip install scnic
+```
+
 Next to install the plugin:
 
 ```
