@@ -52,21 +52,18 @@ def test_calculate_correlations(table, correls_spar, correls_pear):
     assert 'p' in test_correls_spar_p.columns
 
 
-@pytest.mark.skip(reason="SCNIC needs to update Nx to 2.4")
 def test_build_correlation_network_r(correls_spar):
     test_net = build_correlation_network_r(correls_spar, min_val=.5)
     assert len(test_net.nodes) == 4
     assert len(test_net.edges) == 2
 
 
-@pytest.mark.skip(reason="SCNIC needs to update Nx to 2.4")
 def test_build_correlation_network_p(correls_pear):
     test_net = build_correlation_network_p(correls_pear, max_val=1e-10)
     assert len(test_net.nodes) == 18
     assert len(test_net.edges) == 18
 
 
-@pytest.mark.skip(reason="SCNIC needs to update Nx to 2.4")
 def test_make_modules_on_correlations(correls_spar, table):
     test_collapsed, test_net, test_modules = make_modules_on_correlations(correls_spar, table, min_r=.5)
     assert test_collapsed.shape == (49, 200)
