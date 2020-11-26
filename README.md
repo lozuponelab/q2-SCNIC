@@ -2,7 +2,7 @@
 
 # NOTE
 
-The most up to date version of the q2-SCNIC repo is [SCNIC](https://github.com/lozuponelab/q2-SCNIC)! This repo is being deprecated and will not be the main source of q2-SCNIC.
+The most up to date version of the q2-SCNIC repo is [here](https://github.com/lozuponelab/q2-SCNIC)! This repo is being deprecated and will not be the main source of q2-SCNIC.
 
 # q2-SCNIC
 
