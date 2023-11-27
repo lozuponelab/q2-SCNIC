@@ -40,7 +40,7 @@ def build_correlation_network_r(correlation_table: pd.DataFrame, min_val: float=
 
 
 def build_correlation_network_p(correlation_table: pd.DataFrame, max_val: float=.05) -> nx.Graph:
-    correlation_table_filtered = filter_correls(correlation_table, min_p=max_val)
+    correlation_table_filtered = filter_correls(correlation_table, max_p=max_val)
     net = correls_to_net(correlation_table_filtered)
     return net
 
