@@ -21,11 +21,15 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Download QIIME 2 environment file
+      run: |
+        wget https://raw.githubusercontent.com/qiime2/distributions/refs/heads/dev/2025.4/amplicon/released/qiime2-amplicon-ubuntu-latest-conda.yml -O qiime2-env.yml
+
     - name: Set up Conda
       uses: conda-incubator/setup-miniconda@v2
       with:
         activate-environment: test-env
-        environment-file: https://raw.githubusercontent.com/qiime2/distributions/refs/heads/dev/2025.4/amplicon/released/qiime2-amplicon-ubuntu-latest-conda.yml
+        environment-file: qiime2-env.yml
         auto-activate-base: false
 
     - name: Install dependencies
