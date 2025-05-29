@@ -5,7 +5,7 @@ PYTHON ?= python
 all: ;
 
 lint:
-	-q2lint || true
+	-q2lint || echo "q2lint failed but continuing..."
 	flake8
 
 test: all
