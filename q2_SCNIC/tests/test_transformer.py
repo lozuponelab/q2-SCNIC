@@ -49,7 +49,7 @@ def test_4(data_path, net):
 
 @pytest.fixture()
 def module_membership(data_path):
-    df = pd.read_table(path.join(data_path, 'fake_membership.txt'), index_col=0, header=None, dtype=str, squeeze=True)
+    df = pd.read_table(path.join(data_path, 'fake_membership.txt'), index_col=0, header=None, dtype=str).squeeze("columns")
     return df
 
 
