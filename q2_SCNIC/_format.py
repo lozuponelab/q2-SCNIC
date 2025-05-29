@@ -54,7 +54,7 @@ class ModuleMembershipTSVFormat(model.TextFileFormat):
             nrows = None
         else:
             raise ValueError('Nonstandard level value')
-        series = pd.read_table(self.path, header=None, squeeze=True, nrows=nrows, index_col=0)
+        series = pd.read_table(self.path, header=None, nrows=nrows, index_col=0).squeeze("columns")
         if type(series) != pd.Series:
             raise ValidationError('File has more than one column: %s' % series.head())
 
