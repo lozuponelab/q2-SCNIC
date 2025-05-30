@@ -7,7 +7,7 @@ setup(
     cmdclass=versioneer.get_cmdclass(),
     license='BSD-3-Clause',
     packages=find_packages(),
-    author="Michael Shaffer, Kumar Thurimella",
+    author="Michael Shaffer, Kumar Thurimella, John Sterrett",
     author_email="lozuponelab.dev@olucdenver.onmicrosoft.com",
     description=(
         "QIIME2 plugin for using SCNIC."),
