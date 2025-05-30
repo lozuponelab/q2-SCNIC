@@ -15,7 +15,7 @@ test-cov: all
 	py.test --cov=q2_SCNIC
 
 install: all
-	$(PYTHON) setup.py install
+	pip install .
 
 dev: all
 	pip install -e .
