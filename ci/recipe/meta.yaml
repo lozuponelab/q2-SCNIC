@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 source:
-#  url: https://github.com/shafferm/q2-SCNIC/archive/{{ version }}.tar.gz
+#  url: https://github.com/lozuponelab/q2-SCNIC/archive/{{ version }}.tar.gz
   path: ../..
 
 build:
@@ -19,7 +19,7 @@ requirements:
     - setuptools
   run:
     - python {{ python }}
-    - scnic 0.6.1
+    - scnic 0.6.6
     - qiime2 {{ release }}.*
     - q2-types {{ release }}.*
 
@@ -29,7 +29,7 @@ test:
     - qiime2.plugins.SCNIC
 
 about:
-  home: https://github.com/shafferm/q2-SCNIC
+  home: https://github.com/lozuponelab/q2-SCNIC
   license: BSD
   license_file: LICENSE
-  summary: "q2-SCNIC: a qiime2 plugin for SCNIC (https://github.com/shafferm/SCNIC)"
+  summary: "q2-SCNIC: a qiime2 plugin for SCNIC (https://github.com/lozuponelab/SCNIC)"
