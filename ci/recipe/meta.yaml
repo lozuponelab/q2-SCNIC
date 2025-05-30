@@ -11,7 +11,7 @@ source:
   path: ../..
 
 build:
-  script: make install
+  script: pip install .
 
 requirements:
   host:
@@ -19,7 +19,7 @@ requirements:
     - setuptools
   run:
     - python {{ python }}
-    - scnic 0.6.6
+    - scnic >=0.6.6
     - qiime2 {{ release }}.*
     - q2-types {{ release }}.*
 
