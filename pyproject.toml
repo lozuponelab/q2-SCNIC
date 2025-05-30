@@ -37,6 +37,9 @@ Repository = "https://github.com/lozuponelab/q2-SCNIC.git"
 packages = ["q2_SCNIC"]
 package-data = {q2_SCNIC = ["citations.bib"]}
 
+[project.entry-points."qiime2.plugins"]
+SCNIC = "q2_SCNIC.plugin_setup:plugin"
+
 [tool.setuptools.dynamic]
 version = {file = "q2_SCNIC/_version.py"}
 
