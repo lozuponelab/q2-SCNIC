@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=42", "wheel", "versioneer"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "q2-SCNIC"
+version = "0.0.0"  # This is a placeholder, actual version comes from git tags
+description = "QIIME2 plugin for using SCNIC"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "BSD-3-Clause"}
+authors = [
+    {name = "Michael Shaffer, Kumar Thurimella, John Sterrett", email = "lozuponelab.dev@olucdenver.onmicrosoft.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "scnic>=0.6.6",
+    "qiime2",
+    "q2-types",
+]
+
+[project.urls]
+Homepage = "https://github.com/lozuponelab/q2-SCNIC"
+Repository = "https://github.com/lozuponelab/q2-SCNIC.git"
+
+[tool.setuptools]
+packages = ["q2_SCNIC"]
+package-data = {q2_SCNIC = ["citations.bib"]}
+
+[tool.setuptools.dynamic]
+version = {file = "q2_SCNIC/_version.py"}
+
+[tool.versioneer]
+VCS = "git"
+style = "pep440"
+versionfile_source = "q2_SCNIC/_version.py"
+versionfile_build = "q2_SCNIC/_version.py"
+tag_prefix = ""
+parentdir_prefix = "" 
