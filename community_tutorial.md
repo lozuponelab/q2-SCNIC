@@ -13,18 +13,7 @@ SCNIC: https://github.com/shafferm/SCNIC
 
 ## Installing q2-SCNIC
 
-If you are using qiime 2 2018.8 or later then you must first force an update of your blas version:
-```
-conda install -c conda-forge blas=1.1
-```
-
-q2-SCNIC is available via bioconda so installing is easy. Just enter into your qiime 2 conda environment and use this command:
-```
-conda install -c lozuponelab q2-SCNIC
-```
-That's it.
-
-Note: This adds a few additional packages into your qiime 2 environment. Let us know if this affects your usage of qiime 2 by raising an issue [here](https://github.com/shafferm/q2-SCNIC) or by posting on the [qiime 2 forum.](https://forum.qiime2.org) You also can [install a new qiime 2 environment](https://docs.qiime2.org/2018.8/install/native/#install-qiime-2-within-a-conda-environment) and install q2-SCNIC there to avoid any conflicts with already installed plugins.
+First install q2-SCNIC using the instructions that are at https://github.com/lozuponelab/q2-SCNIC/blob/master/README.md
 
 ## Getting data for q2-SCNIC
 To run q2-SCNIC you need to start with a [Feature table.](https://docs.qiime2.org/2018.8/semantic-types/#common-semantic-types) You can do this tutorial with one of your own that you have imported or generate with qiime 2 or with a sample one. If you already have a feature table to start with you can skip to Running q2-SCNIC.
