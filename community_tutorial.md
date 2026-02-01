@@ -16,7 +16,7 @@ SCNIC: https://github.com/lozuponelab/SCNIC
 First install q2-SCNIC using the instructions that are at https://github.com/lozuponelab/q2-SCNIC/blob/master/README.md
 
 ## Getting data for q2-SCNIC
-To run q2-SCNIC you need to start with a [Feature table.](https://docs.qiime2.org/2018.8/semantic-types/#common-semantic-types) You can do this tutorial with one of your own that you have imported or generate with qiime 2 or with a sample one. If you already have a feature table to start with you can skip to Running q2-SCNIC.
+To run q2-SCNIC you need to start with a QIIME 2 [Feature table.](https://docs.qiime2.org/2024.10/semantic-types/) You can do this tutorial with one of your own that you have imported or generate with qiime 2 or with a sample one. If you already have a feature table to start with you can skip to Running q2-SCNIC.
 
 ### Downloading an example feature table
 Use this command to download a sample feature table for analysis with q2-SCNIC.
