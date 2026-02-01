@@ -7,9 +7,9 @@ The SCNIC method serves three main purposes:
 2. Increasing statistical power by summarizing non-independent features into modules.
 3. Detecting modules of features which may be of biological interest.
 
-q2-SCNIC: https://github.com/shafferm/q2-SCNIC
+q2-SCNIC: https://github.com/lozuponelab/q2-SCNIC
 
-SCNIC: https://github.com/shafferm/SCNIC
+SCNIC: https://github.com/lozuponelab/SCNIC
 
 ## Installing q2-SCNIC
 
