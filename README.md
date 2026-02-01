@@ -10,16 +10,30 @@ A package for accessing the primary methods of [SCNIC](https://www.github.com/lo
 
 # Installation
 
-First, make sure you have SCNIC installed:
+First, follow the instructions to install QIIME 2 Amplicon using either Conda or Docker at https://library.qiime2.org/quickstart/amplicon
+
+Next, install the fastspar dependency of SCNIC:
 
 ```
-conda install -q scnic
+mamba install -c bioconda -c conda-forge fastspar 
 ```
 
 OR
 
 ```
+conda install -c bioconda -c conda-forge --override-channels fastspar 
+```
+
+Next, install SCNIC:
+
+```
 pip install scnic
+```
+
+OR
+
+```
+conda install -q scnic
 ```
 
 Next to install the plugin:
