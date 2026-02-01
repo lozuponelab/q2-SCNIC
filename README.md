@@ -37,4 +37,4 @@ qiime SCNIC --help
 
 # Tutorial
 
-The tutorial for q2-SCNIC can be found in `community_tutorial.md`.
+The tutorial for q2-SCNIC can be found at https://github.com/lozuponelab/q2-SCNIC/blob/master/community_tutorial.md
