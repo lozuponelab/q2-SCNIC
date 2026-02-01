@@ -74,8 +74,6 @@ qiime SCNIC build-correlation-network-r \
 ```
 The `--p-min-val` parameter sets the minimum R value required to call a correlation between two features significant and therefore draw an edge between them. In this example we used a minimum value of .35. This is a common cutoff used with the sparCC correlation metric when used with 16S data.
 
-If you want to make a correlation network based on a maximum significant p-value using the `build-correlation-network-p` method. NOTE: calculating p-values on sparCC correlation values is not currently supported. If you would like to see this feature added [leave an issue.](https://github.com/shafferm/q2-SCNIC)
-
 ### 3. Detecting and summarizing modules of features
 Areas of a network which are strongly interconnected are called modules. With this step we detect these modules and summarize the features in them. The summarization is a simple sum of all features in your modules across samples. This makes it so that sample abundance counts remain the same after summarization and therefore this table can be used for further statistical tests like [ANCOM](https://docs.qiime2.org/2018.8/tutorials/moving-pictures/#differential-abundance-testing-with-ancom) for testing for differential abundance.
 
