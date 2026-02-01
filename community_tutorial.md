@@ -32,7 +32,7 @@ To run q2-SCNIC you need to start with a [Feature table.](https://docs.qiime2.or
 ### Downloading an example feature table
 Use this command to download a sample feature table for analysis with q2-SCNIC.
 ```
-wget https://github.com/shafferm/q2-SCNIC/raw/master/tests/data/fake_data.biom
+wget https://github.com/lozuponelab/q2-SCNIC/blob/master/q2_SCNIC/tests/data/fake_data.biom
 ```
 Then import this table into qiime 2 using this command.
 ```
