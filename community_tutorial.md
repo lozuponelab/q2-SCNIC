@@ -42,7 +42,7 @@ SCNIC can be broken up into three main steps:
 We will run through these steps with the fake_data.qza generated above but you can run it with any feature table by changing the name of fake_data.qza to whatever your qza is called.
 
 ### 1. Filtering your data
-Correlational analyses are hampered by having large numbers of zeroes. Therefore we are first going to remove these from our data. In the q2-SCNIC plugin a method called `sparcc-filter` to do this based on the parameters used in [Friedman et al.](https://doi.org/10.1371/journal.pcbi.1002687) This method removes all samples with a feature abundance total below 500 and all features witht an average abundance less than 2 across all samples. You do not need to use these parameters and can use any method you chose to do this. Other methods for filtering feature tables are outlined [here.](https://docs.qiime2.org/2018.8/tutorials/filtering/)
+Correlational analyses are hampered by having large numbers of zeroes. Therefore we are first going to remove these from our data. In the q2-SCNIC plugin a method called `sparcc-filter` to do this based on the parameters used in [Friedman et al.](https://doi.org/10.1371/journal.pcbi.1002687) This method removes all samples with a feature abundance total below 500 and all features witht an average abundance less than 2 across all samples. You do not need to use these parameters and can use any method you chose to do this. Other methods for filtering feature tables are outlined [here.](https://docs.qiime2.org/2024.10/tutorials/filtering/)
 
 To use the sparcc filter use this command:
 ```
